@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bw.mapper.Goodmapper">
+<select id="queryAll" resultType="com.bw.entity.Goods" parameterType="map">
+select g.gid,g.gname,g.price,g.sales from goods g where g.gid
+<if test="pricestart != null and pricestart != '' ">
+and g.price >= #{pricestart}
+</if>
+<if test="priceend != null and priceend != '' ">
+and g.price &lt;= #{priceend}
+</if>
+<if test="salesstart != null and salesstart != '' ">
+and g.sales >= #{salesstart}
+</if>
+<if test="salesend != null and salesend != '' ">
+and g.sales &lt;= #{salesend}
+</if>
+</select>
+</mapper>
